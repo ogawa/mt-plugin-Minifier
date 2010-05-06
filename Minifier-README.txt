@@ -24,7 +24,7 @@ A block tag which minifies an HTML template.
 Example:
 
     <mt:HTMLMinifier>
-    (contents of CSS template)
+    (HTML template)
     </mt:HTMLMinifier>
 
 == mt:CSSMinifier ==
@@ -34,7 +34,7 @@ A block tag which minifies a CSS template.
 Example:
 
     <mt:CSSMinifier>
-    (contents of CSS template)
+    (CSS template)
     </mt:CSSMinifier>
 
 == mt:JSMinifier ==
@@ -44,7 +44,7 @@ A block tag which minifies a JavaScript template.
 Example:
 
     <mt:JSMinifier>
-    (contents of JavaScript template)
+    (JavaScript template)
     </mt:JSMinifier>
 
 --
