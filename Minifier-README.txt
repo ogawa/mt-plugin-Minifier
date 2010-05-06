@@ -1,8 +1,9 @@
-Minifier - Plugin for minifying CSS and JavaScript
+Minifier - Plugin for minifying HTML, CSS, and JavaScript files
 
 = Overview =
 
-Minifier plugin provides mt:CSSMinifier and mt:JSMinifier block tags.
+Minifier plugin provides mt:HTMLMinifier, mt:CSSMinifier, and
+mt:JSMinifier block tags.
 
 = Installation =
 
@@ -16,15 +17,25 @@ Minifier plugin provides mt:CSSMinifier and mt:JSMinifier block tags.
 
 = Tags =
 
+== mt:HTMLMinifier ==
+
+A block tag which minifies an HTML template.
+
+Example:
+
+    <mt:HTMLMinifier>
+    (contents of CSS template)
+    </mt:HTMLMinifier>
+
 == mt:CSSMinifier ==
 
 A block tag which minifies a CSS template.
 
 Example:
 
-    <mt:CSSMinify>
+    <mt:CSSMinifier>
     (contents of CSS template)
-    </mt:CSSMinify>
+    </mt:CSSMinifier>
 
 == mt:JSMinifier ==
 
@@ -32,9 +43,9 @@ A block tag which minifies a JavaScript template.
 
 Example:
 
-    <mt:JSMinify>
+    <mt:JSMinifier>
     (contents of JavaScript template)
-    </mt:JSMinify>
+    </mt:JSMinifier>
 
 --
 $Id$
