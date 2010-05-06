@@ -13,7 +13,7 @@ use base qw( MT::Plugin );
 
 use MT;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 my $plugin = __PACKAGE__->new(
     {
@@ -22,9 +22,9 @@ my $plugin = __PACKAGE__->new(
         key  => 'minifier',
         description =>
           'Minifier provides mt:cssminifier and mt:jsminifier block tags.',
-        doc_link    => 'http://code.as-is.net/public/wiki/Minifier',
+        doc_link    => 'http://code.google.com/p/ogawa/wiki/Minifier',
         author_name => 'Hirotaka Ogawa',
-        author_link => 'http://as-is.net/blog/',
+        author_link => 'http://blog.as-is.net/',
         version     => $VERSION,
     }
 );
@@ -38,12 +38,39 @@ sub init_registry {
         {
             tags => {
                 block => {
-                    'CSSMinifier' => \&_hdlr_css_minifier,
-                    'JSMinifier'  => \&_hdlr_js_minifier,
+                    'HTMLMinifier' => \&_hdlr_html_minifier,
+                    'CSSMinifier'  => \&_hdlr_css_minifier,
+                    'JSMinifier'   => \&_hdlr_js_minifier,
                 },
             },
         }
     );
+}
+
+sub _hdlr_html_minifier {
+    my ( $ctx, $args, $cond ) = @_;
+    my $builder = $ctx->stash('builder');
+    my $tokens  = $ctx->stash('tokens');
+    defined( my $out = $builder->build( $ctx, $tokens, $cond ) )
+      or return $ctx->error( $builder->errstr );
+    require HTML::Clean;
+    my $opt = {
+        shortertags  => 0,
+        blink        => 0,
+        entities     => 0,
+        dequote      => 0,
+        htmldefaults => 0,
+    };
+    for (
+        qw(whitespace shortertags blink contenttype comments entities dequote defcolor javascript htmldefaults lowercasetags)
+      )
+    {
+        $opt->{$_} = $args->{$_} if defined $args->{$_};
+    }
+    my $h = HTML::Clean->new( \$out );
+    $h->strip($opt);
+    my $data = $h->data();
+    $$data;
 }
 
 sub _hdlr_css_minifier {
