@@ -5,49 +5,20 @@
 # This software is provided as-is. You may use it for commercial or
 # personal use. If you distribute it, please keep this notice intact.
 #
-# Copyright (c) 2008 Hirotaka Ogawa
+# Copyright (c) 2010 Hirotaka Ogawa
 
-package MT::Plugin::Minifier;
+package Minifier::Plugin;
 use strict;
-use base qw( MT::Plugin );
 
-use MT;
+use MT 4;
 
-our $VERSION = '0.02';
+=head2 mt:HTMLMinifier
 
-my $plugin = __PACKAGE__->new(
-    {
-        name => 'Minifier',
-        id   => 'minifier',
-        key  => 'minifier',
-        description =>
-          'Minifier provides mt:cssminifier and mt:jsminifier block tags.',
-        doc_link    => 'http://code.google.com/p/ogawa/wiki/Minifier',
-        author_name => 'Hirotaka Ogawa',
-        author_link => 'http://blog.as-is.net/',
-        version     => $VERSION,
-    }
-);
-MT->add_plugin($plugin);
+This tag generates a minified version of an input HTML text.
 
-sub instance { $plugin }
+=cut
 
-sub init_registry {
-    my $plugin = shift;
-    $plugin->registry(
-        {
-            tags => {
-                block => {
-                    'HTMLMinifier' => \&_hdlr_html_minifier,
-                    'CSSMinifier'  => \&_hdlr_css_minifier,
-                    'JSMinifier'   => \&_hdlr_js_minifier,
-                },
-            },
-        }
-    );
-}
-
-sub _hdlr_html_minifier {
+sub html_minifier {
     my ( $ctx, $args, $cond ) = @_;
     my $builder = $ctx->stash('builder');
     my $tokens  = $ctx->stash('tokens');
@@ -73,7 +44,13 @@ sub _hdlr_html_minifier {
     $$data;
 }
 
-sub _hdlr_css_minifier {
+=head2 mt:CSSMinifier
+
+This tag generates a minified version of an input CSS text.
+
+=cut
+
+sub css_minifier {
     my ( $ctx, $args, $cond ) = @_;
     my $builder = $ctx->stash('builder');
     my $tokens  = $ctx->stash('tokens');
@@ -83,7 +60,13 @@ sub _hdlr_css_minifier {
     CSS::Minifier::minify( input => $out );
 }
 
-sub _hdlr_js_minifier {
+=head2 mt:JSMinifier
+
+This tag generates a minified version of an input JavaScript text.
+
+=cut
+
+sub js_minifier {
     my ( $ctx, $args, $cond ) = @_;
     my $builder = $ctx->stash('builder');
     my $tokens  = $ctx->stash('tokens');

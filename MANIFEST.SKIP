@@ -1,6 +1,7 @@
 \bCVS\b
 \bRCS\b
 \.svn\b
+\.git\b
 \.gitignore
 ,v$
 
@@ -12,7 +13,7 @@
 \.tmp$
 ^\.DS_Store$
 
-^MANIFEST
+^MANIFEST\.
 ^Makefile
 ^blib
 ^pm_to_blib
