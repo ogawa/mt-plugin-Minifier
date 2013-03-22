@@ -1,0 +1,11 @@
+*.bak
+*~
+Makefile
+Makefile.old
+MANIFEST.SKIP
+MANIFEST
+MYMETA.yml
+blib
+pm_to_blib
+*.tar.gz
+*.tar.bz2
