@@ -2,10 +2,9 @@ name: Minifier
 id: minifier
 key: minifier
 description: <__trans phrase="Plugin for minifying HTML, CSS, and JavaScript files">
-doc_link: http://wiki.github.com/ogawa/mt-plugin-Minifier/
-plugin_link: http://github.com/ogawa/mt-plugin-Minifier
+doc_link: https://github.com/ogawa/mt-plugin-Minifier
 version: 0.02
-author_link: http://blog.as-is.net/
+author_link: https://github.com/ogawa
 author_name: Hirotaka Ogawa
 
 tags:
